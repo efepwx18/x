@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top, #1a1a1a, #000);
+    min-height: 100vh;
+    overflow: hidden;
+    color: #fff;
+}
+
+.mouse-glow {
+    position: fixed;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(
+        circle,
+        rgba(255,255,255,0.18),
+        rgba(255,255,255,0.08),
+        transparent 60%
+    );
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    filter: blur(20px);
+    mix-blend-mode: screen;
+    z-index: 3;
+}
+
+.intro {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    animation: introFade 3.2s ease forwards;
+}
+
+.intro span {
+    font-size: 140px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -10px;
+    text-shadow:
+        0 0 20px rgba(255,255,255,0.6),
+        0 0 60px rgba(255,255,255,0.4),
+        0 0 120px rgba(255,255,255,0.25);
+    animation: netflixZoom 3s ease forwards;
+}
+
+@keyframes netflixZoom {
+    0% { transform: scale(0.2); opacity: 0; }
+    40% { transform: scale(1); opacity: 1; }
+    70% { transform: scale(1.05); }
+    100% { transform: scale(4); opacity: 0; }
+}
+
+@keyframes introFade {
+    90% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: pageReveal 1s ease forwards;
+    animation-delay: 3s;
+}
+
+@keyframes pageReveal {
+    to { opacity: 1; }
+}
+
+.profile-card {
+    width: 380px;
+    background: #0f0f0f;
+    border-radius: 22px;
+    padding: 36px 28px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 30px 90px rgba(0,0,0,0.9);
+    position: relative;
+    transition: transform 0.4s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 40px 120px rgba(0,0,0,0.95),
+        0 0 80px rgba(255,255,255,0.08);
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #1f1f1f;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.name {
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+
+.title {
+    font-size: 14px;
+    color: #a1a1a1;
+    margin-bottom: 18px;
+}
+
+.description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #cfcfcf;
+    margin-bottom: 26px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 0;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+    border: 1px solid #262626;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.buttons .icon {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons .icon svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.buttons .text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.buttons a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.25), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.buttons a:hover::before {
+    opacity: 1;
+}
+
+.buttons a:hover {
+    background: #ffffff;
+    color: #000;
+    transform: scale(1.05);
+    box-shadow:
+        0 0 15px rgba(255,255,255,0.6),
+        0 0 45px rgba(255,255,255,0.3);
+}
+
+.buttons a:hover svg {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.9));
+}
